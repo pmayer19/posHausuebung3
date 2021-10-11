@@ -5,6 +5,8 @@
  */
 package net.htlgkr.mayerp190093.PosHausuebung3;
 
+import java.util.Objects;
+
 /**
  *
  * @author mayer
@@ -12,14 +14,14 @@ package net.htlgkr.mayerp190093.PosHausuebung3;
 public class Weapons {
 
     String name;
-    String combatType;
-    String damageType;
+    CombatType combatType;
+    DamageType damageType;
     int damage;
     int speed;
     int strength;
     int value;
 
-    public Weapons(String name, String combatType, String damageType, int damage, int speed, int strength, int value) {
+    public Weapons(String name, CombatType combatType, DamageType damageType, int damage, int speed, int strength, int value) {
         this.name = name;
         this.combatType = combatType;
         this.damageType = damageType;
@@ -40,19 +42,19 @@ public class Weapons {
         this.name = name;
     }
 
-    public String getCombatType() {
+    public CombatType getCombatType() {
         return combatType;
     }
 
-    public void setCombatType(String combatType) {
+    public void setCombatType(CombatType combatType) {
         this.combatType = combatType;
     }
 
-    public String getDamageType() {
+    public DamageType getDamageType() {
         return damageType;
     }
 
-    public void setDamageType(String damageType) {
+    public void setDamageType(DamageType damageType) {
         this.damageType = damageType;
     }
 
@@ -86,6 +88,60 @@ public class Weapons {
 
     public void setValue(int value) {
         this.value = value;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 5;
+        hash = 89 * hash + Objects.hashCode(this.name);
+        hash = 89 * hash + Objects.hashCode(this.combatType);
+        hash = 89 * hash + Objects.hashCode(this.damageType);
+        hash = 89 * hash + this.damage;
+        hash = 89 * hash + this.speed;
+        hash = 89 * hash + this.strength;
+        hash = 89 * hash + this.value;
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Weapons other = (Weapons) obj;
+        if (this.damage != other.damage) {
+            return false;
+        }
+        if (this.speed != other.speed) {
+            return false;
+        }
+        if (this.strength != other.strength) {
+            return false;
+        }
+        if (this.value != other.value) {
+            return false;
+        }
+        if (!Objects.equals(this.name, other.name)) {
+            return false;
+        }
+        if (!Objects.equals(this.combatType, other.combatType)) {
+            return false;
+        }
+        if (!Objects.equals(this.damageType, other.damageType)) {
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public String toString() {
+        return name + " " + combatType + " " + damageType + " " + damage + " " + speed + " " + strength + " " + value;
     }
 
 }

@@ -7,9 +7,13 @@ package net.htlgkr.mayerp190093.PosHausuebung3;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.nio.file.Files;
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Scanner;
+import java.util.stream.Collectors;
 
 /**
  *
@@ -17,20 +21,26 @@ import java.util.Scanner;
  */
 public class Main {
 
-    public static void main(String[] args) throws FileNotFoundException {
-        Scanner fileScanner = new Scanner(new File("weapons.csv"));
-        List<Weapons> weapons = new ArrayList<>();
-        String line = fileScanner.nextLine();
-        while (fileScanner.hasNextLine()) {
-            line = fileScanner.nextLine();
-            String[] parts = line.split(";");
-            Weapons w = new Weapons(parts[0], parts[1], parts[2], Integer.parseInt(parts[3]), Integer.parseInt(parts[4]), Integer.parseInt(parts[4]), Integer.parseInt(parts[5]));
-            weapons.add(w);
-        }
-        fileScanner.close();
+    public static void main(String[] args) throws FileNotFoundException, IOException {
 
-        for (int i = 0; i < weapons.size(); i++) {
-            System.out.println(weapons.get(i));
+        List<Weapons> list = new ArrayList<>();
+
+        list = Files.lines(new File("weapons.csv").toPath())
+                .skip(1)
+                .map(s -> s.split(";"))
+                .map(s -> new Weapons(
+                s[0],
+                CombatType.valueOf(s[1]),
+                DamageType.valueOf(s[2]),
+                Integer.parseInt(s[3]),
+                Integer.parseInt(s[4]),
+                Integer.parseInt(s[5]),
+                Integer.parseInt(s[6])
+        ))
+                .collect(Collectors.toList());
+
+        for (int i = 0; i < list.size(); i++) {
+            System.out.println(list.get(i));
         }
     }
 }
