@@ -141,7 +141,7 @@ public class Weapons {
 
     @Override
     public String toString() {
-        return name + " " + combatType + " " + damageType + " " + damage + " " + speed + " " + strength + " " + value;
+        return name + " + " + combatType + " + " + damageType + " + " + damage + " + " + speed + " + " + strength + " + " + value;
     }
 
 }

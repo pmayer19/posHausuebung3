@@ -23,7 +23,7 @@ public class Main {
 
     public static void main(String[] args) throws FileNotFoundException, IOException {
 
-        List<Weapons> list = new ArrayList<>();
+        List<Weapons> list = new LinkedList<>();
 
         list = Files.lines(new File("weapons.csv").toPath())
                 .skip(1)
@@ -39,8 +39,26 @@ public class Main {
         ))
                 .collect(Collectors.toList());
 
-        for (int i = 0; i < list.size(); i++) {
-            System.out.println(list.get(i));
-        }
+        list.sort((w1, w2) -> Integer.compare(w1.getDamage(), w2.getDamage()));
+
+        Printable p = (weapon) -> {
+            for (int i = 0; i < weapon.size(); i++) {
+
+                System.out.println(weapon.get(i).toString());
+                System.out.println("-");
+            }
+        };
+        p.print(list);
+
+        Streams s = new Streams();
+
+        //durchschnitts test:
+        int[] ar = {1, 2, 4};
+        System.out.println(s.average(ar));
+
+        //toUppercase test:
+        String[] arr = {"aa", "bb", "cc", "dd"};
+        s.upperCase(arr);
+
     }
 }
