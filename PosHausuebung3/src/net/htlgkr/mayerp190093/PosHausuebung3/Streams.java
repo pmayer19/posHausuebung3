@@ -30,7 +30,7 @@ public class Streams {
     }
 
     public Weapons findWeaponWithLowestDamage(List<Weapons> weapons) {
-        Weapons we = weapons.stream().min(Comparator.comparingInt(w -> w.getDamage())).orElse(null);
+        Weapons we = weapons.stream().min(Comparator.comparingInt(Weapons::getDamage)).orElse(null);
         return we;
     }
 
@@ -49,7 +49,7 @@ public class Streams {
     }
 
     public List<String> toNameList(List<Weapons> weapons) {
-        return (List<String>) weapons.stream().map(Weapons::getName);
+        return (List<String>) weapons.stream().map(Weapons::getName).collect(Collectors.toList());
     }
 
     public int[] toSpeedArray(List<Weapons> weapons) {

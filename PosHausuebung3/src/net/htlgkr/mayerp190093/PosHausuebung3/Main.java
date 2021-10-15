@@ -13,6 +13,8 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Scanner;
+import java.util.function.IntPredicate;
+import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
 /**
@@ -59,6 +61,48 @@ public class Main {
         //toUppercase test:
         String[] arr = {"aa", "bb", "cc", "dd"};
         s.upperCase(arr);
+
+//        //findWeaponWithLowestDamage test:
+//        System.out.println(s.findWeaponWithLowestDamage(list));
+//
+//        //findWeaponWithHighestDamage test:
+//        System.out.println(s.findWeaponWithHighestStrength(list));
+//
+//        //collectMissile weapons test:
+//        List<Weapons> l1 = s.collectMissileWeapons(list);
+//        for (Weapons weapons : l1) {
+//            System.out.println(weapons);
+//        }
+//
+//        //findWeaponWithLongestName test:
+//        System.out.println(s.findWeaponWithLongestName(list));
+//
+//        //toNameList test:
+//        List<String> l2 = s.toNameList(list);
+//        for (String string : l2) {
+//            System.out.println(string);
+//        }
+//        //toSpeedArray test:
+//        int[] l3 = s.toSpeedArray(list);
+//        for (int i = 0; i < l3.length; i++) {
+//            System.out.println(l3[i]);
+//        }
+//        //sumUpHashCodes test:
+//        System.out.println(s.sumUpHashCodes(list));
+////        sumUpValues test:
+//        System.out.println(s.sumUpValues(list));
+        //removeDuplicates test:
+//        List<Weapons> l4 = s.removeDuplicates(list);
+//        for (Weapons weapons : l4) {
+//            System.out.println(weapons);
+//        } nicht funktionabel
+        Predicate<Integer> isEven = (t) -> (t % 2) == 2;
+        Predicate<Integer> isPositive = (t) -> (t > 0);
+        Predicate<String> isShortWord = (t) -> (t.length() < 4);
+
+        System.out.println(isEven.test(3));
+        System.out.println(isPositive.test(3));
+        System.out.println(isShortWord.test("halloo"));
 
     }
 }
