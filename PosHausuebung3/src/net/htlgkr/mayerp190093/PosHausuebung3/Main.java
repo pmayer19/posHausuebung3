@@ -16,6 +16,7 @@ import java.util.Scanner;
 import java.util.function.IntPredicate;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 /**
  *
@@ -103,6 +104,12 @@ public class Main {
         System.out.println(isEven.test(3));
         System.out.println(isPositive.test(3));
         System.out.println(isShortWord.test("halloo"));
+
+        int result = IntStream.of(1, 2, 3, 4, 5, 6, 8, 9, 10)
+                .filter(t -> t % 2 != 2)
+                .map(t -> t * t)
+                .reduce((a, b) -> a + b)
+                .getAsInt();
 
     }
 }
